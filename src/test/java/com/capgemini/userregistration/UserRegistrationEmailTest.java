@@ -2,12 +2,25 @@ package com.capgemini.userregistration;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+@RunWith(Parameterized.class)
 public class UserRegistrationEmailTest {
 
+	private String email;
+	private boolean expectedResult;
 	private UserRegistration userRegistration;
+
+	// constructor
+	public UserRegistrationEmailTest(String email, boolean expectedResult) {
+		this.email = email;
+		this.expectedResult = expectedResult;
+	}
 
 	@Before
 	public void setup() {
@@ -15,34 +28,23 @@ public class UserRegistrationEmailTest {
 	}
 
 	/**
-	 * To Check if the validate email is working properly
+	 * Collections of sample emails as parameters
 	 */
-	@Test
-	public void givenEmail_WhenValid_ShouldReturnTrue_HappyCase() {
-		boolean result = userRegistration.validateEmail("abc.1ml+100t-100we.12wsd@gma1il.com.in");
-		assertTrue(result);
-
+	@Parameterized.Parameters
+	public static Collection<Object[]> emailSamples() {
+		return Arrays.asList(new Object[][] { { "abc@yahoo.com", true }, { "abc-100@yahoo.com", true },
+				{ "abc.100@yahoo.com", true }, { "abc111@abc.com", true }, { "abc-100@abc.net", true },
+				{ "abc.100@abc.com.au", true }, { "abc@1.com", true }, { "abc@gmail.com.com", true },
+				{ "abc+100@gmail.com", true }, { "abc", false }, { "abc@.com.my", false }, { "abc123@gmail.a", false },
+				{ "abc123@.com", false }, { "abc123@.com.com", false }, { ".abc@abc.com", false },
+				{ "abc()*@gmail.com", false }, { "abc@%*.com", false }, { "abc..2002@gmail.com", false },
+				{ "abc.@gmail.com", false }, { "abc@abc@gmail.com", false }, { "abc@gmail.com.1a", false },
+				{ "abc@gmail.com.aa.au", false } });
 	}
 
 	@Test
-	public void givenEmail_WhenProperSyntaxNotFollowedCase1_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateEmail("abc.@gmail.com");
-		assertFalse(result);
-
-	}
-
-	@Test
-	public void givenEmail_WhenProperSyntaxNotFollowedCase2_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateEmail("abc.@gmail.com");
-		assertFalse(result);
-
-	}
-
-	@Test
-	public void givenEmail_WhenProperSyntaxNotFollowedCase3_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateEmail("abc.ac@gmail.com.aa.ai");
-		assertFalse(result);
-
+	public void testEmailValidation() {
+		assertEquals(expectedResult, userRegistration.validateEmail(email));
 	}
 
 }
