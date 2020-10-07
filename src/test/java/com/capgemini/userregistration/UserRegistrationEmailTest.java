@@ -43,8 +43,12 @@ public class UserRegistrationEmailTest {
 	}
 
 	@Test
-	public void testEmailValidation() {
-		assertEquals(expectedResult, userRegistration.validateEmail(email));
+	public void testEmailValidation_WhenInvalid_ShouldThrowAnException() {
+		try {
+			assertEquals(expectedResult, userRegistration.validateEmail(email));
+		} catch (InvalidException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

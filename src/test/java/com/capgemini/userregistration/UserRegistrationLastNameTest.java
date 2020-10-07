@@ -17,37 +17,63 @@ public class UserRegistrationLastNameTest {
 	 * To Check if the validate Last name is working properly
 	 */
 	@Test
-	public void givenLastName_WhenStartsWithCap_ShouldReturnTrue_HappyCase() {
-		boolean result = userRegistration.validateLastName("Clarke");
-		assertTrue(result);
+	public void givenLastName_WhenStartsWithCap_ShouldReturnTrue() {
+		boolean result;
+		try {
+			result = userRegistration.validateLastName("Clarke");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Test
-	public void givenLastName_WhenStartsWithlowerCase_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateLastName("clarke");
-		assertFalse(result);
+	public void givenLastName_WhenStartsWithlowerCase_ShouldThrowAnException() {
+		boolean result = false;
+		try {
+			result = userRegistration.validateLastName("clarke");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.printStackTrace();
+			
+		}
 
 	}
 
 	@Test
-	public void givenLastName_WhenContainsSpecialCharacters_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateLastName("Clark@e");
-		assertFalse(result);
+	public void givenLastName_WhenContainsSpecialCharacters_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateLastName("Clark@e");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Test
-	public void givenLastName_WhenContainsNumbers_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateLastName("Clark9e");
-		assertFalse(result);
+	public void givenLastName_WhenContainsNumbers_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateLastName("Clark9e");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Test
-	public void givenLastName_WhenContainsLessThan3Characters_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateLastName("Oz");
-		assertFalse(result);
+	public void givenLastName_WhenContainsLessThan3Characters_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateLastName("Oz");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.printStackTrace();
+		}
 
 	}
 

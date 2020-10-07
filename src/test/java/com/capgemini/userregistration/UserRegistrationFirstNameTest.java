@@ -19,37 +19,66 @@ public class UserRegistrationFirstNameTest {
 	 * To Check if the validate First name is working properly
 	 */
 	@Test
-	public void givenFirstName_WhenStartsWithCap_ShouldReturnTrue_HappyCase() {
-		boolean result = userRegistration.validateFirstName("Tom");
-		assertTrue(result);
+	public void givenFirstName_WhenStartsWithCap_ShouldReturnTrue() {
+		boolean result;
+		try {
+			result = userRegistration.validateFirstName("Tom");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.getMessage();
+		}
+		
 
 	}
 
 	@Test
-	public void givenFirstName_WhenStartsWithlowerCase_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateFirstName("harry");
-		assertFalse(result);
+	public void givenFirstName_WhenStartsWithlowerCase_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateFirstName("harry");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.getMessage();
+		}
+		
 
 	}
 
 	@Test
-	public void givenFirstName_WhenContainsNumbers_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateFirstName("Peter1a");
-		assertFalse(result);
+	public void givenFirstName_WhenContainsNumbers_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateFirstName("Peter1a");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.getMessage();
+		}
+		
 
 	}
 
 	@Test
-	public void givenFirstName_WhenContainsSpecialCharacters_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateFirstName("Peter@a");
-		assertFalse(result);
+	public void givenFirstName_WhenContainsSpecialCharacters_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateFirstName("Peter@a");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.getMessage();
+		}
+		
 
 	}
 
 	@Test
-	public void givenFirstName_WhenContainsLessThan3Characters_ShouldReturnFalse_SadCase() {
-		boolean result = userRegistration.validateFirstName("Pe");
-		assertFalse(result);
+	public void givenFirstName_WhenContainsLessThan3Characters_ShouldThrowAnException() {
+		boolean result;
+		try {
+			result = userRegistration.validateFirstName("Pe");
+			assertTrue(result);
+		} catch (InvalidException e) {
+			e.getMessage();
+		}
 
 	}
 

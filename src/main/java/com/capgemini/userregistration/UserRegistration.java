@@ -3,6 +3,7 @@ package com.capgemini.userregistration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class UserRegistration {
 
 	private static final String REGEX_FIRST_NAME = "(^[A-Z][a-z]{2,}$)";
@@ -23,57 +24,62 @@ public class UserRegistration {
 
 	/**
 	 * To validate first name
+	 * @throws InvalidException
 	 */
-	public boolean validateFirstName(String firstName) {
+	public boolean validateFirstName(String firstName) throws InvalidException {
 		if (validate(REGEX_FIRST_NAME, firstName)) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidException("Invalid First Name! Please, enter a valid First Name");
 		}
 	}
 	
 	/**
 	 * To validate last name
+	 * @throws InvalidException 
 	 */
-	public boolean validateLastName(String lastName) {
+	public boolean validateLastName(String lastName) throws InvalidException {
 		if (validate(REGEX_LAST_NAME, lastName)) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidException("Invalid Last Name! Please, enter a valid Last Name");
 		}
 	}
 
 	/**
 	 * To validate email
+	 * @throws InvalidException 
 	 */
-	public boolean validateEmail(String email) {
+	public boolean validateEmail(String email) throws InvalidException {
 		if (validate(REGEX_EMAIL, email)) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidException("Invalid Email! Please, enter a valid Email");
 		}
 	}
 
 	/**
 	 * To validate phoneNumber
+	 * @throws InvalidException 
 	 */
-	public boolean validatePhoneNumber(String phoneNumber) {
+	public boolean validatePhoneNumber(String phoneNumber) throws InvalidException {
 		if (validate(REGEX_PHONE_NUMBER, phoneNumber)) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidException("Invalid Phone Number! Please, enter a valid Phone Number");
 		}
 	}
 
 	/**
 	 * To validate password
+	 * @throws InvalidException 
 	 */
-	public boolean validatePassword(String password) {
+	public boolean validatePassword(String password) throws InvalidException {
 		if (validate(REGEX_PASSWORD, password)) {
 			return true;
 		}
 		else {
-			return false;
+			throw new InvalidException("Invalid Password! Please, enter a valid Password");
 		}
 	}
 }
