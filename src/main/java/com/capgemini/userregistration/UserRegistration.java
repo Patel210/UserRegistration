@@ -1,8 +1,11 @@
 package com.capgemini.userregistration;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@FunctionalInterface
+interface ValidateUserEntry {
+	boolean validate(String userInput);
+}
 
 public class UserRegistration {
 
@@ -11,19 +14,19 @@ public class UserRegistration {
 	private static final String REGEX_EMAIL = "^[a-z0-9]+(([\\.+-][a-z0-9]{1,})?)+@[a-z0-9]+\\.([a-z]{2,4})+((\\.[a-z]{2,4})?)$";
 	private static final String REGEX_PHONE_NUMBER = "[0-9]{2}\\s[1-9]{1}[0-9]{9}";
 	private static final String REGEX_PASSWORD = "^(?=.*[!@#$%^&*'<>-])(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}$";
-	
 
 	/**
 	 * To validate general entry
 	 */
 	public boolean validate(String pattern, String entry) {
-		Pattern r = Pattern.compile(pattern);
-		Matcher m = r.matcher(entry);
-		return m.find();
+
+		ValidateUserEntry isValid = userInput -> Pattern.compile(pattern).matcher(userInput).matches();
+		return isValid.validate(entry);
 	}
 
 	/**
 	 * To validate first name
+	 * 
 	 * @throws InvalidException
 	 */
 	public boolean validateFirstName(String firstName) throws InvalidException {
@@ -33,10 +36,11 @@ public class UserRegistration {
 			throw new InvalidException("Invalid First Name! Please, enter a valid First Name");
 		}
 	}
-	
+
 	/**
 	 * To validate last name
-	 * @throws InvalidException 
+	 * 
+	 * @throws InvalidException
 	 */
 	public boolean validateLastName(String lastName) throws InvalidException {
 		if (validate(REGEX_LAST_NAME, lastName)) {
@@ -48,7 +52,8 @@ public class UserRegistration {
 
 	/**
 	 * To validate email
-	 * @throws InvalidException 
+	 * 
+	 * @throws InvalidException
 	 */
 	public boolean validateEmail(String email) throws InvalidException {
 		if (validate(REGEX_EMAIL, email)) {
@@ -60,7 +65,8 @@ public class UserRegistration {
 
 	/**
 	 * To validate phoneNumber
-	 * @throws InvalidException 
+	 * 
+	 * @throws InvalidException
 	 */
 	public boolean validatePhoneNumber(String phoneNumber) throws InvalidException {
 		if (validate(REGEX_PHONE_NUMBER, phoneNumber)) {
@@ -72,13 +78,13 @@ public class UserRegistration {
 
 	/**
 	 * To validate password
-	 * @throws InvalidException 
+	 * 
+	 * @throws InvalidException
 	 */
 	public boolean validatePassword(String password) throws InvalidException {
 		if (validate(REGEX_PASSWORD, password)) {
 			return true;
-		}
-		else {
+		} else {
 			throw new InvalidException("Invalid Password! Please, enter a valid Password");
 		}
 	}
