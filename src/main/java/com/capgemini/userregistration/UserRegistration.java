@@ -53,6 +53,9 @@ public class UserRegistration {
 		}
 	}
 
+	/**
+	 * To validate phoneNumber
+	 */
 	public void validatePhoneNumber(String phoneNumber) {
 		if (validate(REGEX_PHONE_NUMBER, phoneNumber)) {
 			System.out.println("Phone Number is Valid");
