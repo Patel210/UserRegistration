@@ -10,7 +10,7 @@ public class UserRegistration {
 	private static final String REGEX_LAST_NAME = "(^[A-Z][a-z]{2,}$)";
 	private static final String REGEX_EMAIL = "^[a-z0-9]+(([\\.+-][a-z0-9]{1,})?)+@[a-z0-9]+\\.([a-z]{2,4})+((\\.[a-z]{2,4})?)$";
 	private static final String REGEX_PHONE_NUMBER = "[0-9]{2}\\s[1-9]{1}[0-9]{9}";
-	private static final String REGEX_PASSWORD = "(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}";
+	private static final String REGEX_PASSWORD = "^(?=.*[!@#$%^&*'<>-])(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}$";
 	
 	/**
 	 * To validate first name
