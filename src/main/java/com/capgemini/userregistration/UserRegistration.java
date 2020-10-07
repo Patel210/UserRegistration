@@ -79,19 +79,34 @@ public class UserRegistration {
 
 	}
 
+	/**
+	 * Clearing all sample emails additionally provided
+	 */
 	public static void main(String[] args) {
 		UserRegistration userRegistration = new UserRegistration();
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your first name to validate: ");
-		userRegistration.validateFirstName(sc.next());
-		System.out.println("Enter your last name to validate: ");
-		userRegistration.validateLastName(sc.next());
-		System.out.println("Enter your email to validate: ");
-		userRegistration.validateEmail(sc.next());
-		System.out.println("Enter your Phone Number in format:(91 9870987129) to validate: ");
-		userRegistration.validatePhoneNumber(sc.next());
-		System.out.println("Enter your Password to validate: ");
-		userRegistration.validatePassword(sc.next());
-		sc.close();
+		{
+		userRegistration.validateEmail("abc@yahoo.com");
+		userRegistration.validateEmail("abc-100@yahoo.com");
+		userRegistration.validateEmail("abc.100@yahoo.com");
+		userRegistration.validateEmail("abc111@abc.com");
+		userRegistration.validateEmail("abc-100@abc.net");
+		userRegistration.validateEmail("abc.100@abc.com.au");
+		userRegistration.validateEmail("abc@1.com");
+		userRegistration.validateEmail("abc@gmail.com.com");
+		userRegistration.validateEmail("abc+100@gmail.com");
+		userRegistration.validateEmail("abc");
+		userRegistration.validateEmail("abc@.com.my");
+		userRegistration.validateEmail("abc123@gmail.a");
+		userRegistration.validateEmail("abc123@.com");
+		userRegistration.validateEmail("abc123@.com.com");
+		userRegistration.validateEmail(".abc@abc.com");
+		userRegistration.validateEmail("abc()*@gmail.com");
+		userRegistration.validateEmail("abc@%*.com");
+		userRegistration.validateEmail("abc..2002@gmail.com");
+		userRegistration.validateEmail("abc.@gmail.com");
+		userRegistration.validateEmail("abc@abc@gmail.com");
+		userRegistration.validateEmail("abc@gmail.com.1a");
+		userRegistration.validateEmail("abc@gmail.com.aa.au");
+		}
 	}
 }
