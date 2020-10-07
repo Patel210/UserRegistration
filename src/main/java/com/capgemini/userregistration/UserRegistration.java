@@ -90,6 +90,8 @@ public class UserRegistration {
 		userRegistration.validateEmail(sc.next());
 		System.out.println("Enter your Phone Number in format:(91 9870987129) to validate: ");
 		userRegistration.validatePhoneNumber(sc.next());
+		System.out.println("Enter your Password to validate: ");
+		userRegistration.validatePassword(sc.next());
 		sc.close();
 	}
 }
