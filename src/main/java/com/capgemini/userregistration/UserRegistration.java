@@ -9,7 +9,8 @@ public class UserRegistration {
 	private static final String REGEX_FIRST_NAME = "(^[A-Z][a-z]{2,}$)";
 	private static final String REGEX_LAST_NAME = "(^[A-Z][a-z]{2,}$)";
 	private static final String REGEX_EMAIL = "^[a-z0-9]+(([\\.+-][a-z0-9]{1,})?)+@[a-z0-9]+\\.([a-z]{2,4})+((\\.[a-z]{2,4})?)$";
-	private static final String REGEX_PHONE_NUMBER = "[0-9]{2}\\s[1-9]{1}[0-9]{9}"; 
+	private static final String REGEX_PHONE_NUMBER = "[0-9]{2}\\s[1-9]{1}[0-9]{9}";
+	private static final String REGEX_PASSWORD = "[^\\s]{8,}";
 	
 	/**
 	 * To validate first name
@@ -59,10 +60,23 @@ public class UserRegistration {
 	public void validatePhoneNumber(String phoneNumber) {
 		if (validate(REGEX_PHONE_NUMBER, phoneNumber)) {
 			System.out.println("Phone Number is Valid");
-		}
-		else {
+		} else {
 			System.out.println("Phone Number is invalid! Try again!");
 		}
+	}
+
+	/**
+	 * To validate password
+	 */
+	public void validatePassword(String password) {
+		if (validate(REGEX_PASSWORD, password)) {
+			System.out.println("Password is Valid");
+		}
+
+		else {
+			System.out.println("Password is invalid! Try again!");
+		}
+
 	}
 
 	public static void main(String[] args) {
